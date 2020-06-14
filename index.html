@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <link rel="stylesheet" href="css/styleForHW5-3.css">
+</head>
+<body>
+    <div id="cards"></div>
+    
+    <script>
+        let myCard = [
+        {
+            cardName1: "Тайная жизнь",
+            cardName2: "домашних животных 2",
+            price: 50,
+            currency: "руб.",
+            file: "card.jpg",
+            type: "blue-ray.png", // dvd.png, svg. png найти в интернете картинки
+            action: true,
+            rating: 4.5,
+            but: "order1.jpg"
+        },
+
+        {
+            cardName1: "История игрушек 4",
+            cardName2: "приключения Вилкинса",
+            price: 60,
+            currency: "руб.",
+            file: "toy4.jpg",
+            type: "4k logo.png", // dvd.png, svg. png найти в интернете картинки
+            action: false,
+            rating: 4,
+            but: "order1.jpg"
+        },
+
+        {
+            cardName1: "Фердинанд",
+            cardName2: "побег из коровника",
+            price: 40,
+            currency: "руб.",
+            file: "ferd.jpg",
+            type: "fullHD-2.png", 
+            action: false,
+            rating: 3.5,
+            but: "order1.jpg"
+        },
+        ];
+s="";
+let j;
+        for(j=0; j<myCard.length; j++) {
+
+// расчет полной стоимости
+    let fullPrice = `${myCard[j].price},00 ${myCard[j].currency}`;
+// расчет акции:
+let price1 = 0;
+let priceAct = 0;
+price1 = myCard[j].price*0.9;
+priceAct = `${price1},00 ${myCard[j].currency}`;
+
+//расчет рейтинга:
+let stars = "";
+for(i=1; i<=5; i++) {
+    if (i<=myCard[j].rating) {stars += `star `}
+    else if(i>myCard[j].rating && i<myCard[j].rating+1) {stars += `star_half `} 
+    else {stars += `star_border `;}
+};
+
+if (myCard[j].action == true) {s += `<div class="card">
+  
+  <div class="fl"><img src="images/${myCard[j].file}" alt="">
+    <img id="type${j}" src="images/${myCard[j].type}" alt="">
+    <img id="offer${j}" src="images/offer.png" alt=""> </div>
+  <div class="title1">
+      <div>${myCard[j].cardName1}</div>
+      <div>${myCard[j].cardName2}</div>
+  </div> 
+  <div class="title2">
+      <div>${priceAct}</div>
+      <div>${fullPrice}</div>
+  </div> 
+
+  <div class="title3">
+      <span class="material-icons">
+          ${stars}
+          </span>
+  </div>
+ 
+  <div class="title4"> <a class="but" href="#"> 
+  <img class="but1" src="images/${myCard[j].but}">
+  <img class="but2" src="images/order2.jpg"> </a>
+  </div>
+
+</div>`;
+}
+
+else {s += `<div class="card">
+  
+  <div class="fl"><img src="images/${myCard[j].file}" alt="">
+    <img id="type${j}" src="images/${myCard[j].type}" alt=""></div>
+  <div class="title1">
+      <div>${myCard[j].cardName1}</div>
+      <div>${myCard[j].cardName2}</div>
+  </div> 
+  <div class="title2">
+      <div>${fullPrice}</div>
+  </div> 
+
+  <div class="title3">
+      <span class="material-icons">
+          ${stars}
+          </span>
+  </div>
+ 
+  <div class="title4"> <a class="but" href="#"> 
+  <img class="but1" src="images/${myCard[j].but}">
+  <img class="but2" src="images/order2.jpg"> </a>
+  </div>
+
+</div>`};
+
+    };
+
+cards.innerHTML = s;
+ 
+
+    </script>
+    
+
+</body>
+</html>
